@@ -22,12 +22,12 @@ public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idClient;
-    @Column(length = 250)
-    private String name;
     @Column(length = 45)
     private String email;
     @Column(length = 45)
     private String password;
+    @Column(length = 250)
+    private String name;
     @Column(length = 10)
     private Integer age;
     
