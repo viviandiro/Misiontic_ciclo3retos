@@ -22,7 +22,7 @@ import lombok.Data;
 @Data
 public class Library implements Serializable {
 
-   
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -35,16 +35,16 @@ public class Library implements Serializable {
     @Column(length = 250)
     private String description;
     @ManyToOne
-    @JoinColumn(name = "id_category")
+    @JoinColumn(name = "category")
     @JsonIgnoreProperties("libs")
     private Category category;
     
     @OneToMany(mappedBy = "lib", cascade = CascadeType.PERSIST)
-    @JsonIgnoreProperties({"lib","client"})
-    List<Message> messages;
+    @JsonIgnoreProperties({"category","lib","client"})
+    private List<Message> messages;
     
     @OneToMany(mappedBy = "lib", cascade = CascadeType.PERSIST)
     @JsonIgnoreProperties({"libs"})
-    List<Reservation> reservations;
+    private List<Reservation> reservations;
 }
    

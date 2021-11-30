@@ -30,7 +30,7 @@ public class ScoreServicio extends ServicioGenericoAbstracto<Score, Integer> {
 
     @Override
     public Score guardar(Score objeto) {
-        if (objeto.getIdScore()== null) {
+        if (objeto.getIdScore() == null) {
             return repositorio.guardar(objeto);
         } else {
             Optional<Score> c = obtenerXId(objeto.getIdScore());
@@ -44,15 +44,19 @@ public class ScoreServicio extends ServicioGenericoAbstracto<Score, Integer> {
 
     @Override
     public Score actualizar(Score objeto) {
-        if (objeto.getIdScore()!= null) {
+        if (objeto.getIdScore() != null) {
             Optional<Score> c = obtenerXId(objeto.getIdScore());
             if (!c.isEmpty()) {
-                return repositorio.guardar(objeto);
-            } else {
-                return objeto;
+                if (objeto.getCalificacion() != null) {
+                    c.get().setCalificacion(objeto.getCalificacion());
+                }
+                if (objeto.getMensaje() != null) {
+                    c.get().setMensaje(objeto.getMensaje());
+                }
+
+                return repositorio.guardar(c.get());
             }
-        } else {
-            return objeto;
         }
+        return objeto;
     }
 }

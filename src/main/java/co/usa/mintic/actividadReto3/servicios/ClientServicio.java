@@ -51,12 +51,21 @@ public class ClientServicio extends ServicioGenericoAbstracto<Client, Integer> {
         if (objeto.getIdClient()!= null) {
             Optional<Client> c = obtenerXId(objeto.getIdClient());
             if (!c.isEmpty()) {
-                return repositorio.guardar(objeto);
-            } else {
-                return objeto;
-            }
-        } else {
+                if (objeto.getEmail()!= null){
+                    c.get().setEmail(objeto.getEmail());
+                }
+                if (objeto.getPassword()!= null){
+                    c.get().setPassword(objeto.getPassword());
+                }
+                if (objeto.getName()!= null){
+                    c.get().setName(objeto.getName());
+                }
+                if (objeto.getAge()!= null){
+                    c.get().setAge(objeto.getAge());
+                }
+                return repositorio.guardar(c.get());
+                }
+              }
             return objeto;
         }
     }
-}

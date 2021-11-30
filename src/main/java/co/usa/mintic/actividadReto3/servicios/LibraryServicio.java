@@ -47,12 +47,22 @@ public class LibraryServicio extends ServicioGenericoAbstracto<Library, Integer>
         if (objeto.getId() != null) {
             Optional<Library> c = obtenerXId(objeto.getId());
             if (!c.isEmpty()) {
-                return repositorio.guardar(objeto);
-            } else {
-                return objeto;
-            }
-        } else {
+                if (objeto.getName()!= null){
+                    c.get().setName(objeto.getName());
+                }
+                if (objeto.getTarget()!= null){
+                    c.get().setTarget(objeto.getTarget());
+                }
+                if (objeto.getCapacity()!= null){
+                    c.get().setCapacity(objeto.getCapacity());
+                }
+                if (objeto.getDescription()!= null){
+                    c.get().setDescription(objeto.getDescription());
+                }
+                return repositorio.guardar(c.get());
+                }
+              }
             return objeto;
         }
     }
-}
+

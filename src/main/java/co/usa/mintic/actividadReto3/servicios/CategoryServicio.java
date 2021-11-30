@@ -47,12 +47,15 @@ public class CategoryServicio extends ServicioGenericoAbstracto<Category, Intege
         if (objeto.getId() != null) {
             Optional<Category> c = obtenerXId(objeto.getId());
             if (!c.isEmpty()) {
-                return repositorio.guardar(objeto);
-            } else {
-                return objeto;
+                if (objeto.getName() != null) {
+                    c.get().setName(objeto.getName());
+                }
+                if (objeto.getDescription() != null) {
+                    c.get().setDescription(objeto.getDescription());
+                }
+                return repositorio.guardar(c.get());
             }
-        } else {
-            return objeto;
         }
+        return objeto;
     }
 }

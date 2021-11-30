@@ -47,12 +47,19 @@ public class AdminServicio extends ServicioGenericoAbstracto<Admin, Integer> {
         if (objeto.getIdAdmin()!= null) {
             Optional<Admin> c = obtenerXId(objeto.getIdAdmin());
             if (!c.isEmpty()) {
-                return repositorio.guardar(objeto);
-            } else {
-                return objeto;
-            }
-        } else {
+               if (objeto.getNombre()!= null){
+                    c.get().setNombre(objeto.getNombre());
+                }
+                if (objeto.getEmail()!= null){
+                    c.get().setEmail(objeto.getEmail());
+                }
+                if (objeto.getPassword()!= null){
+                    c.get().setPassword(objeto.getPassword());
+                }
+                
+                return repositorio.guardar(c.get());
+                }
+              }
             return objeto;
         }
     }
-}

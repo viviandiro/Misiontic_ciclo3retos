@@ -21,7 +21,7 @@ import lombok.Data;
 @Table(name = "category")
 public class Category implements Serializable {
 
-    
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -32,6 +32,6 @@ public class Category implements Serializable {
     
     @OneToMany(mappedBy = "category", cascade = CascadeType.PERSIST)
     @JsonIgnoreProperties("category")
-    List<Library> libs;
+    private List<Library> libs;
     
 }

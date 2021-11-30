@@ -30,7 +30,7 @@ public class MessageServicio extends ServicioGenericoAbstracto<Message, Integer>
 
     @Override
     public Message guardar(Message objeto) {
-        if (objeto.getIdMessage()== null) {
+        if (objeto.getIdMessage() == null) {
             return repositorio.guardar(objeto);
         } else {
             Optional<Message> c = obtenerXId(objeto.getIdMessage());
@@ -44,15 +44,15 @@ public class MessageServicio extends ServicioGenericoAbstracto<Message, Integer>
 
     @Override
     public Message actualizar(Message objeto) {
-        if (objeto.getIdMessage()!= null) {
+        if (objeto.getIdMessage() != null) {
             Optional<Message> c = obtenerXId(objeto.getIdMessage());
             if (!c.isEmpty()) {
-                return repositorio.guardar(objeto);
-            } else {
-                return objeto;
+                if (objeto.getMessageText() != null) {
+                    c.get().setMessageText(objeto.getMessageText());
+                }
+                return repositorio.guardar(c.get());
             }
-        } else {
-            return objeto;
         }
+        return objeto;
     }
 }

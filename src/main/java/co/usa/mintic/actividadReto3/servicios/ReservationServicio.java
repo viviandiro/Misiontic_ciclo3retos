@@ -31,7 +31,7 @@ public class ReservationServicio extends ServicioGenericoAbstracto<Reservation, 
 
     @Override
     public Reservation guardar(Reservation objeto) {
-        if (objeto.getIdReservation()== null) {
+        if (objeto.getIdReservation() == null) {
             return repositorio.guardar(objeto);
         } else {
             Optional<Reservation> c = obtenerXId(objeto.getIdReservation());
@@ -48,12 +48,19 @@ public class ReservationServicio extends ServicioGenericoAbstracto<Reservation, 
         if (objeto.getIdReservation() != null) {
             Optional<Reservation> c = obtenerXId(objeto.getIdReservation());
             if (!c.isEmpty()) {
-                return repositorio.guardar(objeto);
-            } else {
-                return objeto;
+                if (objeto.getStartDate() != null) {
+                    c.get().setStartDate(objeto.getStartDate());
+                }
+                if (objeto.getDevolutionDate() != null) {
+                    c.get().setDevolutionDate(objeto.getDevolutionDate());
+                }
+                if (objeto.getStatus() != null) {
+                    c.get().setStatus(objeto.getStatus());
+                }
+
+                return repositorio.guardar(c.get());
             }
-        } else {
-            return objeto;
         }
+        return objeto;
     }
 }
