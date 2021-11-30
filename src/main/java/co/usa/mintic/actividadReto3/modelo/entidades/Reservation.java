@@ -12,7 +12,6 @@ import java.util.List;
 import javax.persistence.*;
 import javax.persistence.Table;
 import lombok.Data;
-
 /**
  *
  * @author ViviJhon
@@ -26,9 +25,7 @@ public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idReservation;
-    @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
-    @Temporal(TemporalType.TIMESTAMP)
     private Date devolutionDate;
     @Column(length = 45)
     private String status="created";
