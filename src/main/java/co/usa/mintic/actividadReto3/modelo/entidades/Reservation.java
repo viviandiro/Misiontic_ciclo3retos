@@ -8,9 +8,7 @@ package co.usa.mintic.actividadReto3.modelo.entidades;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.*;
-import javax.persistence.Table;
 import lombok.Data;
 /**
  *
