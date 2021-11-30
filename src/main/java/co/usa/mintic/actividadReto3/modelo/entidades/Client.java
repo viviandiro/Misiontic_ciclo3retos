@@ -26,7 +26,6 @@ public class Client implements Serializable {
     private String email;
     @Column(length = 45)
     private String password;
-    
     @Column(length = 250)
     private String name;
     @Column(length = 10)
