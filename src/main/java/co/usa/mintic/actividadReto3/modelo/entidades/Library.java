@@ -15,7 +15,7 @@ import lombok.Data;
 
 /**
  *
- * @author ViviJhon
+ * @author Viviana diaz rojas
  */
 @Entity
 @Table(name ="libreria")
