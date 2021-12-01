@@ -40,7 +40,7 @@ public class Library implements Serializable {
     private Category category;
     
     @OneToMany(mappedBy = "lib", cascade = CascadeType.PERSIST)
-    @JsonIgnoreProperties({"category","lib","client"})
+    @JsonIgnoreProperties({"lib","client"})
     private List<Message> messages;
     
     @OneToMany(mappedBy = "lib", cascade = CascadeType.PERSIST)
